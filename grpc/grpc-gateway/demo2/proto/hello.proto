@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package client;
+
+option go_package = "./;protodemo";
+import "annotations.proto";
+message Message {
+  string id = 1;
+}
+
+service MessageService {
+  rpc Hello (Message) returns (Message){
+    option (google.api.http) = {
+      post: "/v1/example"
+      body: "*"
+    };
+  };
+}
